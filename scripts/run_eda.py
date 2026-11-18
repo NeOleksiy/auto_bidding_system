@@ -122,11 +122,6 @@ def main():
     (SELECT campaign, count(DISTINCT (uid,conversion_id,conversion_timestamp)) FILTER(WHERE conversion=1) conversions FROM d GROUP BY campaign)""",
     )
     save(
-        "campaign_turnover",
-        """SELECT part, count(DISTINCT campaign) campaigns,
-    count(*) FILTER(WHERE campaign NOT IN(SELECT campaign FROM split WHERE part='train')) rows_new_campaign FROM split GROUP BY part""",
-    )
-    save(
         "splits",
         """SELECT part, count(*) impressions, sum(conversion) positive_rows,
     avg(conversion) positive_rate, count(DISTINCT uid) users,
@@ -214,14 +209,6 @@ def main():
             if c.startswith("cat")
         ),
     )
-    save(
-        "category_top",
-        " UNION ALL ".join(
-            f"SELECT '{c}' feature, n frequency FROM (SELECT {c},count(*) n FROM d GROUP BY {c} ORDER BY n DESC LIMIT 10)"
-            for c in FIELDS
-            if c.startswith("cat")
-        ),
-    )
     # Only the plot uses a deterministic sample; all tables above cover the full dataset.
     costs = db.sql(
         "SELECT cost FROM d ORDER BY hash(timestamp,uid,campaign,cost,42),timestamp,uid,campaign,cost LIMIT 100000"
@@ -278,10 +265,6 @@ def main():
             hue="part",
             ax=ax,
         ),
-    )
-    save(
-        "daily_cost",
-        "SELECT timestamp//86400 AS day_index, sum(cost) cost, count(DISTINCT campaign) campaigns FROM d GROUP BY day_index ORDER BY day_index",
     )
     with args.input.open("rb") as stream:
         sha = hashlib.file_digest(stream, "sha256").hexdigest()

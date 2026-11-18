@@ -93,7 +93,6 @@ uv run pre-commit run --all-files
 Pre-commit также проверяет YAML, TOML, конфликты слияния, размер добавляемых файлов,
 лишние пробелы и окончания файлов. Версии Ruff в зависимостях и hooks совпадают.
 
-Пока Python-кода нет, соответствующие проверки могут быть пропущены.
 Новые файлы перед запуском `uv run pre-commit run --all-files` нужно добавить через
 `git add`. Если hooks исправили файлы, изменения следует проверить и добавить
 повторно. Данные, модели, результаты локальных экспериментов и секреты в Git
@@ -105,7 +104,6 @@ Pre-commit также проверяет YAML, TOML, конфликты слия
 uv sync --locked --group eda
 uv run --group eda python scripts/download_data.py
 uv run --group eda python scripts/run_eda.py
-uv run --group eda python scripts/build_report.py
 uv run --group eda python -m unittest discover -s tests
 uv run --group eda jupyter lab notebooks/01_criteo_eda.ipynb
 ```
@@ -116,4 +114,5 @@ uv run --group eda jupyter lab notebooks/01_criteo_eda.ipynb
 Полный расчёт ограничивает память DuckDB 1 ГБ; график стоимости использует
 фиксированную выборку, остальные агрегаты считаются по всем строкам.
 Источник закреплён по ревизии, загрузчик проверяет SHA-256.
-Ноутбук читает уже рассчитанные агрегаты; для их обновления нужен запуск скрипта.
+Ноутбук содержит графики и выводы по рассчитанным агрегатам.
+После повторного анализа его можно выполнить заново через Jupyter.
