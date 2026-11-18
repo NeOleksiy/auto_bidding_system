@@ -1,0 +1,4 @@
+entity,entities,mean_contacts,quantiles,max_contacts
+user,6142256,2.681103978733547,[ 1.  6. 18.],880
+user_campaign,7813401,2.107664383282005,[ 1.  4. 14.],376
+conversion,438730,1.8375675244455587,[ 1.  3. 11.],164
