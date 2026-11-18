@@ -1,0 +1,2 @@
+rows,users,campaigns,min_timestamp,max_timestamp,positive_rows,positive_rate,clicks,attributed_rows,conversions,raw_conversion_ids,total_cost
+16468027,6142256,675,0,2671199,806196.0,0.04895522699835263,5947563.0,442424.0,438730,435810,4829.340540979205

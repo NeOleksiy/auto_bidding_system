@@ -1,0 +1,10 @@
+first_part,second_part,entity,overlap
+train,validation,conversion_id,27286
+train,validation,"(uid,conversion_id,conversion_timestamp)",26665
+train,test,conversion_id,14406
+validation,test,conversion_id,19941
+validation,test,uid,658629
+train,test,"(uid,conversion_id,conversion_timestamp)",13671
+train,test,uid,894475
+validation,test,"(uid,conversion_id,conversion_timestamp)",19736
+train,validation,uid,1044665

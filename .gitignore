@@ -218,3 +218,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project datasets, trained models and local experiment outputs
+/data/
+/models/
+/artifacts/
+/mlruns/
+/wandb/
+.DS_Store
